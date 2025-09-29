@@ -7,7 +7,7 @@ class Movie < ActiveRecord::Base
     if ratings.blank?
       return self.all
     else
-      return self.where(rating: ratings)
+      return self.where('UPPER(rating) IN (?)', ratings.map(&:upcase))
     end
   end
 
